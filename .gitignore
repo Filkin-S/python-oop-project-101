@@ -1,0 +1,6 @@
+*.txt
+nul
+.python-version
+__pycache__/
+*.py[cod]
+.pytest_cache/
