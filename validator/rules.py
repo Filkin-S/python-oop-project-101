@@ -46,9 +46,16 @@ class ShapeRule(Rule):
         self.shape = shape
 
     def check(self, value):
-        if not isinstance(value, dict):
-            return False
         for key, schema in self.shape.items():
             if not schema.is_valid(value.get(key)):
                 return False
         return True
+
+
+class CustomRule(Rule):
+    def __init__(self, func, arg):
+        self.func = func
+        self.arg = arg
+
+    def check(self, value):
+        return self.func(value, self.arg)

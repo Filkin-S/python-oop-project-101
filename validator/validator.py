@@ -28,3 +28,6 @@ class Validator:
 
     def dict(self):
         return DictSchema(self.rule_factory, self.custom_rules["dict"])
+
+    def add_validator(self, type, func_name, func):
+        self.custom_rules[type][func_name] = func
