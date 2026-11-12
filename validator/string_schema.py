@@ -2,19 +2,15 @@ from validator.schema import Schema
 
 
 class StringSchema(Schema):
-    def is_valid(self, value):
-        if value is None or value == "":
-            return True if not self.is_required else False
-        for name, arg in self.rules.items():
-            func = self.validators[name]
-            if not func(value, arg):
-                return False
-        return True
+    def is_empty(self, value):
+        return value is None or value == ""
 
     def contains(self, substr):
-        self.rules["contains"] = substr
+        rule = self.rule_factory.create_rule("contains", substr)
+        self.rules["contains"] = rule
         return self
 
     def min_len(self, length):
-        self.rules["min_len"] = length
+        rule = self.rule_factory.create_rule("min_len", length)
+        self.rules["min_len"] = rule
         return self

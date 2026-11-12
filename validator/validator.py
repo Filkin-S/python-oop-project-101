@@ -1,16 +1,17 @@
-import operator
-
+from validator.number_schema import NumberSchema
+from validator.rule_factory import RuleFactory
 from validator.string_schema import StringSchema
 
 
 class Validator:
     def __init__(self):
-        self.validators = {
-            "string": {
-                "contains": operator.contains,
-                "min_len": lambda value, length: len(value) >= length,
-            }
+        self.custom_rules = {
+            "string": {},
+            "number": {},
         }
 
     def string(self):
-        return StringSchema(self.validators["string"].copy())
+        return StringSchema(RuleFactory(), self.custom_rules["string"])
+
+    def number(self):
+        return NumberSchema(RuleFactory(), self.custom_rules["number"])
