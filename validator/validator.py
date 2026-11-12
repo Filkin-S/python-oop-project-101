@@ -1,6 +1,5 @@
-from validator.number_schema import NumberSchema
 from validator.rule_factory import RuleFactory
-from validator.string_schema import StringSchema
+from validator.schemas import ListSchema, NumberSchema, StringSchema
 
 
 class Validator:
@@ -8,10 +7,15 @@ class Validator:
         self.custom_rules = {
             "string": {},
             "number": {},
+            "list": {},
         }
+        self.rule_factory = RuleFactory()
 
     def string(self):
-        return StringSchema(RuleFactory(), self.custom_rules["string"])
+        return StringSchema(self.rule_factory, self.custom_rules["string"])
 
     def number(self):
-        return NumberSchema(RuleFactory(), self.custom_rules["number"])
+        return NumberSchema(self.rule_factory, self.custom_rules["number"])
+
+    def list(self):
+        return ListSchema(self.rule_factory, self.custom_rules["list"])

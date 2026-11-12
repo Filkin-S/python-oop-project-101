@@ -1,7 +1,10 @@
-from validator.contains_rule import ContainsRule
-from validator.min_len_rule import MinLenRule
-from validator.positive_rule import PositiveRule
-from validator.range_rule import RangeRule
+from validator.rules import (
+    ContainsRule,
+    MinLenRule,
+    PositiveRule,
+    RangeRule,
+    SizeOfRule,
+)
 
 
 class RuleFactory:
@@ -11,6 +14,7 @@ class RuleFactory:
             "min_len": MinLenRule,
             "positive": PositiveRule,
             "range": RangeRule,
+            "sizeof": SizeOfRule,
         }
 
     def create_rule(self, rule_name, *args, **kwargs):
