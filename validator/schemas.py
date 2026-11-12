@@ -39,3 +39,13 @@ class ListSchema(Schema):
         rule = self.rule_factory.create_rule("sizeof", size)
         self.rules["sizeof"] = rule
         return self
+
+
+class DictSchema(Schema):
+    def is_empty(self, value):
+        return value is None
+
+    def shape(self, shape):
+        rule = self.rule_factory.create_rule("shape", shape)
+        self.rules["shape"] = rule
+        return self

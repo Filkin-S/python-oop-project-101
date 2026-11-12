@@ -39,3 +39,16 @@ class SizeOfRule(Rule):
 
     def check(self, value):
         return len(value) == self.size
+
+
+class ShapeRule(Rule):
+    def __init__(self, shape):
+        self.shape = shape
+
+    def check(self, value):
+        if not isinstance(value, dict):
+            return False
+        for key, schema in self.shape.items():
+            if not schema.is_valid(value.get(key)):
+                return False
+        return True

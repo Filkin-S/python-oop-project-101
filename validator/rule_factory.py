@@ -3,6 +3,7 @@ from validator.rules import (
     MinLenRule,
     PositiveRule,
     RangeRule,
+    ShapeRule,
     SizeOfRule,
 )
 
@@ -15,6 +16,7 @@ class RuleFactory:
             "positive": PositiveRule,
             "range": RangeRule,
             "sizeof": SizeOfRule,
+            "shape": ShapeRule,
         }
 
     def create_rule(self, rule_name, *args, **kwargs):

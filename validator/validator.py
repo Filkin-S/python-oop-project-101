@@ -1,5 +1,10 @@
 from validator.rule_factory import RuleFactory
-from validator.schemas import ListSchema, NumberSchema, StringSchema
+from validator.schemas import (
+    DictSchema,
+    ListSchema,
+    NumberSchema,
+    StringSchema,
+)
 
 
 class Validator:
@@ -8,6 +13,7 @@ class Validator:
             "string": {},
             "number": {},
             "list": {},
+            "dict": {},
         }
         self.rule_factory = RuleFactory()
 
@@ -19,3 +25,6 @@ class Validator:
 
     def list(self):
         return ListSchema(self.rule_factory, self.custom_rules["list"])
+
+    def dict(self):
+        return DictSchema(self.rule_factory, self.custom_rules["dict"])
